@@ -3,16 +3,13 @@ import server from './api/server';
 import { MongoClient } from 'mongodb';
 
 const port = 5000;
-let mongodbUrl: string;
 
 // dotenv uses `T | undefined` for it's environment variables, which breaks
 // the MongoClient connect method because it expects only a string.
-// This conditional forces mongodbUrl to be a string instead of string | undefined
-if (process.env.MONGODB_URL) {
-  mongodbUrl = process.env.MONGODB_URL;
-} else {
-  mongodbUrl = 'url not found';
-}
+// This ternary forces mongodbUrl to be a string instead of string | undefined
+const mongodbUrl = process.env.MONGODB_URL
+  ? process.env.MONGODB_URL
+  : 'url not found';
 
 MongoClient.connect(mongodbUrl, {
   useNewUrlParser: true,
