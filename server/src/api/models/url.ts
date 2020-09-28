@@ -30,3 +30,7 @@ export async function addUrl(addUrlArgs: addUrlArgs) {
     return { error: err };
   }
 }
+
+export async function retrieveUrl(hash: mongodb.ObjectID) {
+  return await urls.findOne({ _id: hash });
+}
