@@ -15,3 +15,19 @@ export const addUrl: controller = (req, res, next) => {
       next(e);
     });
 };
+
+export const retrieveUrl: controller = (req, res, next) => {
+  const { hash } = req.params;
+  urls
+    .retrieveUrl(new ObjectID(hash))
+    .then(url => {
+      if (!url) {
+        res.status(404).json({ NOT_FOUND: 'URL not found.' });
+      } else {
+        res.status(200).json({ url });
+      }
+    })
+    .catch(e => {
+      next(e);
+    });
+};
