@@ -2,6 +2,8 @@ require('dotenv').config();
 import server from './api/server';
 import { MongoClient } from 'mongodb';
 
+import * as urls from './api/models/url';
+
 const port = 5000;
 
 // dotenv uses `T | undefined` for it's environment variables, which breaks
@@ -11,13 +13,16 @@ const mongodbUrl = process.env.MONGODB_URL
   ? process.env.MONGODB_URL
   : 'url not found';
 
+  
+// if trouble connecting, remember to whitelist current IP address in Network Access panel in Atlas
 MongoClient.connect(mongodbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(client => {
-    // DB injection goes here, i.e.
-    // someModelDAO.injectDb(client);
+  .then(db => {
+    // DB injection goes here
+    urls.injectDb(db);
+
     server.listen(port, () => {
       console.log('\n=== SERVER LISTENING ON 5000 ===\n');
     });
