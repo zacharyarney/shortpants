@@ -1,7 +1,7 @@
 import express from 'express';
 import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import { addUrl, retrieveUrl } from './controllers/urlController';
+import { addUrl, getUrl } from './controllers/urlController';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 // ROUTES
 app.post('/new', addUrl);
-app.get('/:hash', retrieveUrl);
+app.get('/:hash', getUrl);
 
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ SERVER_ERROR: err });

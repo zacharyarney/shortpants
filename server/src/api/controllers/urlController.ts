@@ -16,10 +16,10 @@ export const addUrl: controller = (req, res, next) => {
     });
 };
 
-export const retrieveUrl: controller = (req, res, next) => {
+export const getUrl: controller = (req, res, next) => {
   const { hash } = req.params;
   urls
-    .retrieveUrl(new ObjectID(hash))
+    .getUrl(new ObjectID(hash))
     .then(url => {
       if (!url) {
         res.status(404).json({ NOT_FOUND: 'URL not found.' });

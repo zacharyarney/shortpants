@@ -31,6 +31,6 @@ export async function addUrl(addUrlArgs: addUrlArgs) {
   }
 }
 
-export async function retrieveUrl(hash: mongodb.ObjectID) {
+export async function getUrl(hash: mongodb.ObjectID) {
   return await urls.findOne({ _id: hash });
 }
