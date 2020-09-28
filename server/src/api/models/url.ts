@@ -3,6 +3,10 @@ import mongodb from 'mongodb';
 
 let urls: mongodb.Collection;
 
+interface addUrlArgs {
+  url: string;
+}
+
 export function injectDb(connection: mongodb.MongoClient) {
   if (urls) return;
 
@@ -13,9 +17,9 @@ export function injectDb(connection: mongodb.MongoClient) {
   }
 }
 
-export async function addUrl(url: string) {
+export async function addUrl(addUrlArgs: addUrlArgs) {
   try {
-    const response = await urls.insertOne(url);
+    const response = await urls.insertOne(addUrlArgs);
     return {
       response,
       success: true,
