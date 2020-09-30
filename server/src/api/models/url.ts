@@ -4,7 +4,7 @@ import mongodb from 'mongodb';
 let urls: mongodb.Collection;
 
 interface addUrlArgs {
-  _id: string;
+  truncHash: string;
   url: string;
 }
 
@@ -20,18 +20,16 @@ export function injectDb(connection: mongodb.MongoClient) {
 
 // Mongodb's ObjectId is too long. Options right now include:
 //  - hashing the url and truncating the hash to just 4-8 characters
-//  - UUID generator 
+//  - UUID generator
 //  - using portions of the ObjectId. last three bytes are an incrementor.
 export async function addUrl(addUrlArgs: addUrlArgs) {
   try {
     const response = await urls.insertOne(addUrlArgs);
-    return {
-      response,
-      success: true,
-      hash: response.insertedId,
-    };
+
+    return response.ops;
   } catch (err) {
     console.error(`Error while adding url, ${err}.`);
+
     return { error: err };
   }
 }

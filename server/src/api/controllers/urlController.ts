@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { Request, Response, NextFunction } from 'express';
 import { ObjectID } from 'mongodb';
 import * as urls from '../models/url';
@@ -6,10 +7,17 @@ type controller = (req: Request, res: Response, next: NextFunction) => void;
 
 export const addUrl: controller = (req, res, next) => {
   const { url } = req.body;
+  const hash = crypto.createHash('sha1').update(url).digest('base64');
+  const urlSafe = hash
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/g, '');
+  const truncHash = urlSafe.substring(0, 6);
+  const args = { truncHash, url };
   urls
-    .addUrl(req.body)
+    .addUrl(args)
     .then(urlRes => {
-      res.status(200).json({ success: true, url: urlRes });
+      res.status(200).json(urlRes);
     })
     .catch(e => {
       next(e);
