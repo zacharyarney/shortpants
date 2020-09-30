@@ -7,15 +7,15 @@ type controller = (req: Request, res: Response, next: NextFunction) => void;
 
 export const addUrl: controller = (req, res, next) => {
   const { url } = req.body;
-  const hash = crypto.createHash('sha1').update(url).digest('base64');
+  const fullHash = crypto.createHash('sha1').update(url).digest('base64');
   // replaces url-breaking characters '+', '/', '=', '$'
-  const urlSafe = hash
+  const urlSafe = fullHash
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/g, '');
   // truncates hash into 6 character string
-  const truncHash = urlSafe.substring(0, 6);
-  const args = { truncHash, url };
+  const hash = urlSafe.substring(0, 6);
+  const args = { hash, url };
   urls
     .addUrl(args)
     .then(urlRes => {

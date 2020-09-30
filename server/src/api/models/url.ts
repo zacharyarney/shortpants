@@ -4,7 +4,7 @@ import mongodb from 'mongodb';
 let urls: mongodb.Collection;
 
 interface addUrlArgs {
-  truncHash: string;
+  hash: string;
   url: string;
 }
 
@@ -35,5 +35,5 @@ export async function addUrl(addUrlArgs: addUrlArgs) {
 }
 
 export async function getUrl(hash: string) {
-  return await urls.findOne({ truncHash: hash });
+  return await urls.findOne({ hash: hash });
 }
