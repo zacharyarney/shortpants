@@ -5,7 +5,7 @@ import * as urls from '../models/url';
 
 type controller = (req: Request, res: Response, next: NextFunction) => void;
 
-export const addUrl: controller = (req, res, next) => {
+export const addUrl: controller = async (req, res, next) => {
   const { url } = req.body;
   const fullHash = crypto.createHash('sha1').update(url).digest('base64');
   // replaces url-breaking characters '+', '/', '=', '$'
@@ -13,17 +13,26 @@ export const addUrl: controller = (req, res, next) => {
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/g, '');
-  // truncates hash into 6 character string
+  // truncate hash into 6 character string
   const hash = urlSafe.substring(0, 6);
   const args = { hash, url };
-  urls
-    .addUrl(args)
-    .then(urlRes => {
-      res.status(200).json(urlRes);
-    })
-    .catch(e => {
-      next(e);
-    });
+  try {
+    const url = await urls.getUrl(hash);
+    if (!url) {
+      try {
+        const urlRes = await urls.addUrl(args);
+        res.status(200).json(urlRes);
+      } catch (e) {
+        next(e);
+      }
+    } else {
+      // it's possible this should be a 409 code
+      // it's just returning the preexisting entry being duplicated
+      res.status(200).json(url);
+    }
+  } catch (e) {
+    next(e);
+  }
 };
 
 export const getUrl: controller = (req, res, next) => {
