@@ -9,6 +9,7 @@ export const useInput = (initialVal = ''): useInputTuple => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
   };
-
+  // can also use const assertion instead of defining the output type
+  // i.e. return [value, handlChange] as const;
   return [value, handleChange];
 };
