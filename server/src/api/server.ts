@@ -1,10 +1,11 @@
 import express from 'express';
 import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import { addUrl, getUrl } from './controllers/urlController';
+import path from 'path';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import urlRoutes from './routes/urlRoutes';
+import viewRoutes from './routes/viewRoutes';
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(morgan('short'));
 // app.use(cors());
 
 // ROUTES
-app.post('/new', addUrl);
+app.use('/', viewRoutes)
 app.use('/api', urlRoutes);
 
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
