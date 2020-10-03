@@ -2,15 +2,17 @@ import express from 'express';
 import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { addUrl, getUrl } from './controllers/urlController';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
 const app = express();
 
+// MIDDLEWARE
 app.use(express.json());
-app.use(cors());
-
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hey there!', who: 'you!', wow: 'wowee!' });
-});
+app.use(express.static(path.join(__dirname, '/static')));
+app.use(helmet());
+app.use(morgan('short'));
+// app.use(cors());
 
 // ROUTES
 app.post('/new', addUrl);
