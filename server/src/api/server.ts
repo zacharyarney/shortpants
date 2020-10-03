@@ -4,6 +4,7 @@ import cors from 'cors';
 import { addUrl, getUrl } from './controllers/urlController';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import urlRoutes from './routes/urlRoutes';
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(morgan('short'));
 
 // ROUTES
 app.post('/new', addUrl);
-app.get('/:hash', getUrl);
+app.use('/api', urlRoutes);
 
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ SERVER_ERROR: err });
