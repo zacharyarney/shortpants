@@ -18,7 +18,7 @@ form.addEventListener('submit', e => {
   console.log('ANYTHING');
   console.log(formUrl.value);
   submitForm('http://localhost:5000/api/new', { url: formUrl.value })
-    .then(res => res.json())
+    .then(res => res)
     .then(data => console.log(data[0]))
     .catch(e => console.log(e));
 });
