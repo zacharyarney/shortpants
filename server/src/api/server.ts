@@ -10,6 +10,7 @@ import viewRoutes from './routes/viewRoutes';
 const app = express();
 
 // MIDDLEWARE
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(helmet());
@@ -17,7 +18,7 @@ app.use(morgan('short'));
 // app.use(cors());
 
 // ROUTES
-app.use('/', viewRoutes)
+app.use('/', viewRoutes);
 app.use('/api', urlRoutes);
 
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
