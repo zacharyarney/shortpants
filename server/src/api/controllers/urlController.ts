@@ -1,7 +1,9 @@
 import crypto from 'crypto';
+import path from 'path';
 import { Request, Response, NextFunction } from 'express';
 import { ObjectID } from 'mongodb';
 import * as urls from '../models/url';
+import submittedView from '../views/submittedView';
 
 type controller = (req: Request, res: Response, next: NextFunction) => void;
 
@@ -16,20 +18,20 @@ export const addUrl: controller = async (req, res, next) => {
   // truncate hash into 6 character string
   const hash = urlSafe.substring(0, 6);
   const args = { hash, url };
+
   try {
     const url = await urls.getUrl(hash);
     if (!url) {
       try {
-        const urlRes = await urls.addUrl(args);
-        res.status(200).json(urlRes);
+        // const urlRes = await urls.addUrl(args);
+        // res.status(200).json(urlRes);
+        await urls.addUrl(args);
       } catch (e) {
         next(e);
       }
-    } else {
-      // it's possible this should be a 409 code
-      // it's just returning the preexisting entry being duplicated
-      res.status(200).json(url);
     }
+
+    res.status(200).redirect(`/view/${hash}`);
   } catch (e) {
     next(e);
   }
