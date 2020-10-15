@@ -14,4 +14,9 @@ router.get('/view/:hash', (req, res) => {
   res.set('Content-Type', 'text/html').status(200).send(view);
 });
 
+router.get('/:hash', (req, res) => {
+  const { hash } = req.params;
+  res.redirect(`/api/${hash}`)
+})
+
 export default router;

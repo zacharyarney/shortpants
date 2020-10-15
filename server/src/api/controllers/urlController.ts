@@ -36,13 +36,16 @@ export const addUrl: controller = async (req, res, next) => {
 
 export const getUrl: controller = (req, res, next) => {
   const { hash } = req.params;
+  console.log('IN IT');
   urls
     .getUrl(hash)
-    .then(url => {
-      if (!url) {
+    .then(data => {
+      console.log(data);
+      if (!data) {
+        console.log('WOOPS!');
         res.status(404).json({ NOT_FOUND: 'URL not found.' });
       } else {
-        res.status(200).json(url);
+        res.redirect(`https://${data.url}`);
       }
     })
     .catch(e => {
