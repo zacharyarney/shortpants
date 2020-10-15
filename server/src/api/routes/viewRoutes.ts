@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 
 router.get('/view/:hash', (req, res) => {
   const view = submittedView(req.params.hash);
-  console.log(view);
   res.set('Content-Type', 'text/html').status(200).send(view);
 });
 
