@@ -1,9 +1,6 @@
 import crypto from 'crypto';
-import path from 'path';
 import { Request, Response, NextFunction } from 'express';
-import { ObjectID } from 'mongodb';
 import * as urls from '../models/url';
-import submittedView from '../views/submittedView';
 
 type controller = (req: Request, res: Response, next: NextFunction) => void;
 
@@ -31,7 +28,7 @@ export const addUrl: controller = async (req, res, next) => {
       }
     }
 
-    res.status(200).redirect(`/view/${hash}`);
+    res.redirect(`/view/${hash}`);
   } catch (e) {
     next(e);
   }
