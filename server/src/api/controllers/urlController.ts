@@ -5,6 +5,7 @@ import * as urls from '../models/url';
 type controller = (req: Request, res: Response, next: NextFunction) => void;
 
 export const addUrl: controller = async (req, res, next) => {
+  // TODO: check for and strip away 'https://' or 'http://'
   const { url } = req.body;
   const fullHash = crypto.createHash('sha1').update(url).digest('base64');
   // replaces url-breaking characters '+', '/', '=', '$'
