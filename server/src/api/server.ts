@@ -1,7 +1,9 @@
+import path from 'path';
+import fs from 'fs';
+import https from 'https';
 import express from 'express';
 import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import path from 'path';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import urlRoutes from './routes/urlRoutes';
@@ -25,4 +27,12 @@ app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ SERVER_ERROR: err });
 });
 
-export default app;
+export const httpsServer = https.createServer(
+  {
+    key: fs.readFileSync('localhost.key'),
+    cert: fs.readFileSync('localhost.crt'),
+    requestCert: false,
+    rejectUnauthorized: false,
+  },
+  app
+);
