@@ -10,3 +10,7 @@ build/
 
 # Yarn
 yarn-error.log
+
+# SSL
+localhost.crt
+localhost.key
