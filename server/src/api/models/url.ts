@@ -35,5 +35,5 @@ export async function addUrl(addUrlArgs: addUrlArgs) {
 }
 
 export async function getUrl(hash: string) {
-  return await urls.findOne({ hash: hash });
+  return await urls.findOne({ hash: hash }, { projection: { url: true } });
 }
