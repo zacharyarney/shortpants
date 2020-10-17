@@ -6,8 +6,8 @@ import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import urlRoutes from './routes/urlRoutes';
-import viewRoutes from './routes/viewRoutes';
+import { addUrl, getUrl } from './controllers/urlController';
+import { home, submitted } from './controllers/viewController';
 
 const app = express();
 
@@ -19,10 +19,13 @@ app.use(helmet());
 app.use(morgan('short'));
 // app.use(cors());
 
-// ROUTES
-app.use('/', viewRoutes);
-app.use('/api', urlRoutes);
+// ENDPOINTS
+app.post('/api/new', addUrl);
+app.get('/', home);
+app.get('/submitted/:hash', submitted);
+app.get('/:hash', getUrl);
 
+// ERROR HANDLER
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ SERVER_ERROR: err });
 });
