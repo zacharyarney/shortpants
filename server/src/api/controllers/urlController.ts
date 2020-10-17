@@ -25,8 +25,6 @@ export const addUrl: controller = async (req, res, next) => {
     const url = await urls.getUrl(hash);
     if (!url) {
       try {
-        // const urlRes = await urls.addUrl(args);
-        // res.status(200).json(urlRes);
         await urls.addUrl(args);
       } catch (e) {
         next(e);
@@ -39,20 +37,18 @@ export const addUrl: controller = async (req, res, next) => {
   }
 };
 
-export const getUrl: controller = (req, res, next) => {
+export const getUrl: controller = async (req, res, next) => {
   const { hash } = req.params;
 
-  urls
-    .getUrl(hash)
-    .then(data => {
+  try {
+    const data = await urls.getUrl(hash);
 
-      if (!data) {
-        res.status(404).json({ NOT_FOUND: 'URL not found.' });
-      } else {
-        res.redirect(`https://${data.url}`);
-      }
-    })
-    .catch(e => {
-      next(e);
-    });
+    if (!data) {
+      res.status(404).json({ NOT_FOUND: 'URL not found.' });
+    } else {
+      res.status(302).redirect(`https://${data.url}`);
+    }
+  } catch (e) {
+    next(e);
+  }
 };
