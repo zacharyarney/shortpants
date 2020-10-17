@@ -33,7 +33,7 @@ export const addUrl: controller = async (req, res, next) => {
       }
     }
 
-    res.redirect(`/view/${hash}`);
+    res.redirect(`/submitted/${hash}`);
   } catch (e) {
     next(e);
   }
