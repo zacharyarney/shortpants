@@ -10,6 +10,8 @@ async function submitForm(url, data) {
     body: JSON.stringify(data),
   });
 
+  // formUrl.value = '';
+
   return response;
 }
 
