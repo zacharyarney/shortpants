@@ -11,6 +11,8 @@ function submittedView(hash: string) {
         media="screen"
         charset="UTF-8"
       />
+      <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
+      <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
       <title>SHORTPANTS</title>
     </head>
     <body>
@@ -22,13 +24,10 @@ function submittedView(hash: string) {
           <button class="copy">copy</button>
         </div>
       </div>
-      <h1>SHORTPANTS</h1>
-      <h3>Here's your shortened URL!</h3>
-      <p>${domain}${hash}</p>
     </body>
     </html>`;
 
-    return template;
+  return template;
 }
 
 export default submittedView;
