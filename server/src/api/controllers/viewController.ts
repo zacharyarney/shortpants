@@ -7,6 +7,7 @@ export const home: Controller = (req, res, next) => {
 };
 
 export const submitted: Controller = (req, res, next) => {
-  const view = submittedView(req.params.hash);
+  const domain = process.env.DOMAIN || 'localhost:5000/';
+  const view = submittedView(domain, req.params.hash);
   res.set('Content-Type', 'text/html').status(200).send(view);
 };

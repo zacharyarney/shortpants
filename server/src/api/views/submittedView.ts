@@ -1,5 +1,4 @@
-function submittedView(hash: string) {
-  const domain = 'localhost:5000/';
+function submittedView(domain: string, hash: string) {
   const template = `<!DOCTYPE html>
     <html lang="en">
     <head>
