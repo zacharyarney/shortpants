@@ -31,7 +31,6 @@ export const addUrl: Controller = async (
     console.log('HTTP');
     url = url.slice(7);
   }
-  console.log('URL: ', url.slice(0, 8));
 
   const fullHash = crypto.createHash('sha1').update(url).digest('base64');
   // replaces url-breaking characters '+', '/', '=', '$'
