@@ -13,6 +13,7 @@ function submittedView(hash: string) {
       />
       <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
       <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
+      <script src="/js/submitted.js" async defer></script>
       <title>SHORTPANTS</title>
     </head>
     <body>
