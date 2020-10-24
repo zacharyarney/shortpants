@@ -14,6 +14,14 @@ function submittedView(hash: string) {
       <title>SHORTPANTS</title>
     </head>
     <body>
+      <div class="container">
+        <h1>SHORTPANTS</h1>
+        <div class="output">
+          <label for="urlOutput">Here's your shortened URL!</label>
+          <input class="outputUrlString" name="urlOutput" value="${domain}${hash}" readonly></input>
+          <button class="copy">copy</button>
+        </div>
+      </div>
       <h1>SHORTPANTS</h1>
       <h3>Here's your shortened URL!</h3>
       <p>${domain}${hash}</p>
