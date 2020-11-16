@@ -67,7 +67,7 @@ export const getUrl: Controller = async (req, res, next) => {
     if (!data) {
       res.status(404).json({ NOT_FOUND: 'URL not found.' });
     } else {
-      res.status(302).redirect(`https://${data.url}`);
+      res.status(302).redirect(`http://${data.url}`);
     }
   } catch (e) {
     next(e);

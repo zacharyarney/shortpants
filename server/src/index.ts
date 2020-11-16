@@ -1,5 +1,5 @@
 require('dotenv').config();
-import { httpsServer } from './api/server';
+import { app } from './api/server';
 import { MongoClient } from 'mongodb';
 
 import * as urls from './api/models/url';
@@ -23,7 +23,7 @@ MongoClient.connect(mongodbUrl, {
     // DB injection goes here
     urls.injectDb(db);
 
-    httpsServer.listen(port, () => {
+    app.listen(port, () => {
       console.log('\n=== SERVER LISTENING ON 5000 ===\n');
     });
   })
