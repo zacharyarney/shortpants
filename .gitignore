@@ -14,3 +14,7 @@ yarn-error.log
 # SSL
 localhost.crt
 localhost.key
+
+#node/tsc
+node_modules
+dist/
