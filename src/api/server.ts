@@ -14,7 +14,7 @@ export const app = express();
 // MIDDLEWARE
 app.use(cors({ origin: '*' }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/static')));
+app.use(express.static(path.join(process.cwd(), '/static')));
 app.use(helmet());
 app.use(morgan('short'));
 // app.use(cors());
