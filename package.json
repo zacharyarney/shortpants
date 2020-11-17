@@ -27,8 +27,7 @@
     "server": "ts-node src/index.ts",
     "server:watch": "nodemon",
     "build": "tsc",
-    "test": "jest",
-    "postinstall": "tsc && mv -i -v src/api/static dist/api/"
+    "test": "jest"
   },
   "nodemonConfig": {
     "ignore": [

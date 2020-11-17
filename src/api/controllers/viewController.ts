@@ -3,7 +3,7 @@ import { Controller } from './urlController';
 import submittedView from '../views/submittedView';
 
 export const home: Controller = (req, res, next) => {
-  res.sendFile(path.resolve(process.cwd(), 'src/api/static/submitUrl.html'));
+  res.sendFile(path.resolve(process.cwd(), 'static/submitUrl.html'));
 };
 
 export const submitted: Controller = (req, res, next) => {
