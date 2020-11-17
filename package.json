@@ -28,7 +28,7 @@
     "server:watch": "nodemon",
     "build": "tsc",
     "test": "jest",
-    "postinstall": "tsc && mv -i -v src/api/static dist/api/ && rm -v -rf src"
+    "postinstall": "tsc && mv -i -v src/api/static dist/api/"
   },
   "nodemonConfig": {
     "ignore": [
