@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 
 import * as urls from './api/models/url';
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // dotenv uses `T | undefined` for it's environment variables, which breaks
 // the MongoClient connect method because it expects only a string.
