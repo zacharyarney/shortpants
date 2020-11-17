@@ -17,7 +17,7 @@ async function submitForm(url, data) {
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  submitForm('https://shortpants.herokuapp.com/api/new', { url: formUrl.value })
+  submitForm(`${window.location.origin}/api/new`, { url: formUrl.value })
     .then(res => res)
     .then(data => {
       window.location = data.url;
