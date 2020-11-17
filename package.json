@@ -24,10 +24,11 @@
   },
   "scripts": {
     "start": "node dist/index.js",
-    "start:watch": "nodemon",
+    "server": "ts-node src/index.ts",
+    "server:watch": "nodemon",
     "build": "tsc",
     "test": "jest",
-    "postinstall": "tsc"
+    "postinstall": "tsc && mv -i -v src/static dist/ && rm -v -rf src"
   },
   "nodemonConfig": {
     "ignore": [
