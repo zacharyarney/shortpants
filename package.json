@@ -42,5 +42,5 @@
     "exec": "yarn start",
     "ext": "ts"
   },
-  "engines": { "node": "14.4.0" }
+  "engines": { "node": "15.2.1" }
 }

@@ -34,24 +34,29 @@ export const addUrl: Controller = async (
 
   const fullHash = crypto.createHash('sha1').update(url).digest('base64');
   // replaces url-breaking characters '+', '/', '=', '$'
-  const urlSafe = fullHash
+  const urlSafeHash = fullHash
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/g, '');
   // truncate hash into 6 character string
-  const hash = urlSafe.substring(0, 6);
+  const hash = urlSafeHash.substring(0, 6);
   const args = { hash, url };
 
   try {
-    const url = await urls.getUrl(hash);
-    if (!url) {
+    const existingUrl = await urls.getUrl(hash);
+    if (!existingUrl) {
       try {
         await urls.addUrl(args);
       } catch (e) {
         next(e);
       }
+    } else if (existingUrl && existingUrl.url != url) {
+      // TODO: this block is for catching collisions.
+      // could create "buckets" in mongodb document with an array of urls associated with hash
+      // append index of url in array to the hash
     }
 
+    // res.status(200).json(existingUrl);
     res.redirect(`/submitted/${hash}`);
   } catch (e) {
     next(e);
