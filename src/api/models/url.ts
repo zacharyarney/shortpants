@@ -3,7 +3,7 @@ import mongodb from 'mongodb';
 
 let urls: mongodb.Collection;
 
-interface addUrlArgs {
+interface UrlModel {
   hash: string;
   url: string;
 }
@@ -22,9 +22,9 @@ export function injectDb(connection: mongodb.MongoClient) {
 //  - hashing the url and truncating the hash to just 4-8 characters
 //  - UUID generator
 //  - using portions of the ObjectId. last three bytes are an incrementor.
-export async function addUrl(addUrlArgs: addUrlArgs) {
+export async function addUrl(urlModel: UrlModel) {
   try {
-    const response = await urls.insertOne(addUrlArgs);
+    const response = await urls.insertOne(urlModel);
 
     return response.ops;
   } catch (err) {
@@ -35,5 +35,12 @@ export async function addUrl(addUrlArgs: addUrlArgs) {
 }
 
 export async function getUrl(hash: string) {
-  return await urls.findOne({ hash: hash }, { projection: { url: true } });
+  try {
+    const response = await urls.findOne({ hash: hash }, { projection: { url: true } });
+    return response
+  } catch (err) {
+    console.error(`Error while adding url, ${err}.`);
+
+    return { error: err };
+  }
 }
