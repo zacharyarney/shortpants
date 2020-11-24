@@ -50,8 +50,13 @@ export const addUrl: Controller = async (
       } catch (e) {
         next(e);
       }
+    } else if (existingUrl && existingUrl.url != url) {
+      // TODO: this block is for catching collisions.
+      // could create "buckets" in mongodb document with an array of urls associated with hash
+      // append index of url in array to the hash
     }
 
+    // res.status(200).json(existingUrl);
     res.redirect(`/submitted/${hash}`);
   } catch (e) {
     next(e);
