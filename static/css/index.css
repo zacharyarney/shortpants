@@ -3,6 +3,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border-radius: 3px;
 }
 
 /* Remove default padding */
@@ -84,13 +85,6 @@ html {
 
 /* STYLES */
 body {
-  background: repeating-linear-gradient(
-    135deg,
-    #ffffff,
-    #ffffff 80px,
-    #fff9a8 80px,
-    #fff9a8 110px
-  );
   /* background: #fff9a8; */
   /* background: #fffcd4; */
   /* background: rgb(255, 254, 250);
@@ -99,58 +93,121 @@ body {
     rgba(255, 254, 250, 1) 0%,
     rgba(255, 252, 212, 1) 100%
   ); */
-  height: 100vh;
+  height: auto;
+  width: 100%;
 }
+
+.dots-container-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  width: 100vw;
+  z-index: -100;
+}
+
+.dots-container {
+  /* bottom: -300px; */
+  display: flex;
+  height: 300%;
+  overflow: hidden;
+  /* right: -840px; */
+  transform: rotate(45deg);
+  transform-origin: left;
+  width: 1000px;
+  /* z-index: -1; */
+}
+
+.dots {
+  background: white;
+  background-image: radial-gradient(#fff9a8 20%, transparent 20%),
+    radial-gradient(#fff9a8 20%, transparent 20%);
+  background-position: 60px 0, 160px 100px;
+  background-size: 200px 200px;
+  height: 100%;
+  /* right: -200px; */
+  /* position: fixed; */
+  /* bottom: -320px; */
+  min-width: 300px;
+  z-index: 0;
+}
+
+.stripes {
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff,
+    #ffffff 10%,
+    #fff9a8 10%,
+    #fff9a8 13%
+  );
+  height: 100%;
+  min-width: 700px;
+  z-index: -2;
+}
+
 .container {
+  display: none;
   align-items: flex-start;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  height: 100vh;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: 800px;
-  padding: 60px 10px 0;
+  padding: 60px 0 30px;
   /* width: fit-content; */
 }
+
+.content {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 32px;
+}
+
 h1 {
   background-color: #2466ff;
-  box-shadow: 10px 12px black;
+  /* box-shadow: 18px 22px #181818; */
   color: white;
   font-family: europa, sans-serif;
   font-size: 6rem;
   font-style: italic;
   font-weight: 700;
   padding: 0 24px 0 20px;
-  margin-bottom: 50px;
+  margin: 0 0 50px;
   width: fit-content;
 }
 
 form,
 .output {
-  background: white;
+  background-color: white;
   /* background-color: #fffcd4; */
   /* border: 12px solid #2466ff; */
-  border: 4px solid #2466ff;
-  box-shadow: 10px 12px black;
+  border: 1px solid #2466ff;
+  box-shadow: 18px 22px #181818;
   display: flex;
   flex-direction: column;
   justify-content: start;
+  margin: 0 0 50px;
   padding: 20px 20px 32px;
   width: 100%;
 }
 
 label {
   color: #2466ff;
-  font-family: source-code-pro;
+  font-family: source-code-pro, monospace;
   font-size: 1.6rem;
-  font-style: italic;
-  font-weight: 700;
+  font-style: regular;
+  font-weight: 400;
   margin-bottom: 20px;
 }
 
 input {
   background: white;
-  border: 4px solid #2466ff;
-  font-family: source-code-pro;
+  border: 1px solid #2466ff;
+  font-family: source-code-pro, monospace;
   font-size: 1.6rem;
   font-style: italic;
   font-weight: 400;
@@ -159,14 +216,49 @@ input {
 }
 
 button {
-  background-color: #2466ff;
+  background-color: #409fff;
   border: none;
-  box-shadow: 10px 12px black;
+  border-radius: 20px;
+  /* box-shadow: 10px 12px black; */
   color: white;
-  font-family: source-code-pro, monospace;
+  font-family: europa, sans-serif;
   font-size: 1.6rem;
   font-style: italic;
   font-weight: 700;
+  height: 40px;
   padding: 8px 24px;
   width: fit-content;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* margin: 0 0 20px; */
+  padding-right: 32px;
+  width: 100%;
+}
+
+.github-link {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.github-logo {
+  filter: invert(44%) sepia(83%) saturate(5295%) hue-rotate(215deg)
+    brightness(98%) contrast(105%);
+  height: 16px;
+  margin-right: 5px;
+  width: 16px;
+}
+
+.github-text {
+  color: #2466ff;
+  font-family: source-code-pro, monospace;
+  font-size: 1.6rem;
+  font-style: regular;
+  font-weight: 400;
 }
