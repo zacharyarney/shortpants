@@ -5,12 +5,14 @@
   "author": "Zachary Arney <zachary.arney@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/serve-favicon": "^2.5.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
     "mongodb": "^3.6.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.7",
@@ -42,5 +44,7 @@
     "exec": "yarn start",
     "ext": "ts"
   },
-  "engines": { "node": "15.3.0" }
+  "engines": {
+    "node": "15.3.0"
+  }
 }
