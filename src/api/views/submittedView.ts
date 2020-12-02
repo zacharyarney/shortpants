@@ -16,6 +16,12 @@ function submittedView(domain: string, hash: string) {
       <title>SHORTPANTS</title>
     </head>
     <body>
+      <div class="dots-container-container">
+        <div class="dots-container">
+          <div class="stripes"></div>
+          <div class="dots"></div>
+        </div>
+      </div>
       <div class="container">
         <h1>SHORTPANTS</h1>
         <div class="output">
@@ -23,6 +29,19 @@ function submittedView(domain: string, hash: string) {
           <input class="outputUrlString" name="urlOutput" value="${domain}${hash}" readonly></input>
           <button class="copy">copy</button>
         </div>
+        <footer>
+          <a
+            href="https://github.com/zacharyarney/shortpants"
+            class="github-link"
+          >
+            <img
+              src="/img/GitHub-Mark-32px.png"
+              alt="GitHub logo"
+              class="github-logo"
+            />
+            <p class="github-text">GitHub</p>
+          </a>
+        </footer>
       </div>
     </body>
     </html>`;
