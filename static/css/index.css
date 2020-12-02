@@ -85,6 +85,13 @@ html {
 
 /* STYLES */
 body {
+    background: repeating-linear-gradient(
+      135deg,
+      #ffffff,
+      #ffffff 80px,
+      #fff9a8 80px,
+      #fff9a8 110px
+    );
   /* background: #fff9a8; */
   /* background: #fffcd4; */
   /* background: rgb(255, 254, 250);
@@ -93,11 +100,11 @@ body {
     rgba(255, 254, 250, 1) 0%,
     rgba(255, 252, 212, 1) 100%
   ); */
-  height: auto;
+  height: 100vh;
   width: 100%;
 }
 
-.dots-container-container {
+/* .dots-container-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +114,7 @@ body {
   right: 0;
   width: 100vw;
   z-index: -100;
-}
+} */
 
 .dots-container {
   /* bottom: -300px; */
@@ -135,7 +142,7 @@ body {
   z-index: 0;
 }
 
-.stripes {
+/* .stripes {
   background: repeating-linear-gradient(
     90deg,
     #ffffff,
@@ -146,7 +153,7 @@ body {
   height: 100%;
   min-width: 700px;
   z-index: -2;
-}
+} */
 
 .container {
   display: none;
@@ -262,3 +269,25 @@ footer {
   font-style: regular;
   font-weight: 400;
 }
+
+/* @media only screen and (max-width: 600px) {
+  body {
+    background: repeating-linear-gradient(
+      135deg,
+      #ffffff,
+      #ffffff 80px,
+      #fff9a8 80px,
+      #fff9a8 110px
+    );
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .container {
+    width: 100vw;
+  }
+
+  .dots-container-container {
+    display: none;
+  }
+} */
