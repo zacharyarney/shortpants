@@ -4,6 +4,7 @@ import path from 'path';
 import express from 'express';
 import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import favicon from 'serve-favicon'
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { addUrl, getUrl, home, submitted } from './controllers/urlController';
@@ -14,6 +15,7 @@ export const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), '/static')));
+app.use(favicon(path.join(process.cwd(), '/static/favicon.png')))
 app.use(helmet());
 app.use(morgan('short'));
 // app.use(cors());
