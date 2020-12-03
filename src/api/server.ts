@@ -6,8 +6,7 @@ import { Errback, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { addUrl, getUrl } from './controllers/urlController';
-import { home, submitted } from './controllers/viewController';
+import { addUrl, getUrl, home, submitted } from './controllers/urlController';
 
 export const app = express();
 

@@ -1,6 +1,8 @@
 import crypto from 'crypto';
+import path from 'path';
 import { Request, Response, NextFunction } from 'express';
 import * as urls from '../models/url';
+import { submittedView, submittedForm } from '../views/submittedView';
 
 export type Controller = (
   req: Request,
@@ -15,6 +17,16 @@ interface RequestBody {
 interface UrlRequest<T> extends Request {
   body: T;
 }
+
+export const home: Controller = (req, res, next) => {
+  res.sendFile(path.resolve(process.cwd(), 'static/submitUrl.html'));
+};
+
+export const submitted: Controller = (req, res, next) => {
+  const domain = process.env.DOMAIN || 'localhost:5000/';
+  const view = submittedView(domain, req.params.hash);
+  res.set('Content-Type', 'text/html').status(200).send(view);
+};
 
 export const addUrl: Controller = async (
   req: UrlRequest<RequestBody>,
@@ -56,8 +68,9 @@ export const addUrl: Controller = async (
       // append index of url in array to the hash
     }
 
-    // res.status(200).json(existingUrl);
-    res.redirect(`/submitted/${hash}`);
+    const domain = process.env.DOMAIN || 'localhost:5000/';
+    const view = submittedForm(domain, hash);
+    res.status(200).json({ hash, view });
   } catch (e) {
     next(e);
   }
