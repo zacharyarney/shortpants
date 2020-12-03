@@ -68,9 +68,9 @@ export const addUrl: Controller = async (
       // append index of url in array to the hash
     }
 
-    const domain = process.env.DOMAIN || 'localhost:5000/';
-    const view = submittedForm(domain, hash);
-    res.status(200).json({ hash, view });
+    // view can be sent to reduce number of API calls if I can get the History API to behave like one would expect
+    // const view = submittedForm(domain, hash);
+    res.status(200).json({ hash /* , view */ });
   } catch (e) {
     next(e);
   }
