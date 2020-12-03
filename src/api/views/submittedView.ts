@@ -1,4 +1,4 @@
-function submittedView(domain: string, hash: string) {
+export function submittedView(domain: string, hash: string) {
   const template = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -10,6 +10,7 @@ function submittedView(domain: string, hash: string) {
         media="screen"
         charset="UTF-8"
       />
+      <link href="/favicon.png" rel="shortcut icon" type="image/x-icon" />
       <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
       <link rel="stylesheet" href="https://use.typekit.net/qpd3zcs.css">
       <script src="/js/submitted.js" async defer></script>
@@ -28,7 +29,7 @@ function submittedView(domain: string, hash: string) {
           <div class="output">
             <label for="urlOutput">Here's your shortened URL!</label>
             <input class="outputUrlString" name="urlOutput" value="${domain}${hash}" readonly></input>
-            <button class="copy">copy</button>
+            <button class="copy">COPY LINK</button>
           </div>
         </div>
         <footer>
@@ -51,4 +52,11 @@ function submittedView(domain: string, hash: string) {
   return template;
 }
 
-export default submittedView;
+export function submittedForm(domain: string, hash: string) {
+  const template = `<label for="urlOutput">Here's your shortened URL!</label>
+    <input class="outputUrlString" name="urlOutput" value="${domain}${hash}" readonly></input>
+    <button class="copy">COPY LINK</button>
+  `;
+
+  return template;
+}
