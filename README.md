@@ -1,4 +1,4 @@
 # shortpants
-[pnts.dev](pnts.dev)
+[pnts.dev](https://pnts.dev)
 
 A simple URL shortener.
